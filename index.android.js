@@ -2,6 +2,7 @@
 import React, {
   AppRegistry,
   Component,
+  Image,
   StyleSheet,
   Text,
   TouchableWithoutFeedback,
@@ -145,7 +146,7 @@ var CatJokes = React.createClass({
   },
 
   hideAnswer: function() {
-    this.setState({ jokeAnswer: 'Show Answer' })
+    this.setState({ jokeAnswer: '' })
   },
 
   render: function() {
@@ -166,18 +167,27 @@ var CatJokes = React.createClass({
     );
   },
 
+  handleTap: function() {
+    if ( this.state.jokeAnswer.length ) {
+      this.newJoke();
+    } else {
+      this.showAnswer();
+    }
+  },
+
   renderJokeView: function() {
     return (
       <View style={styles.container}>
-        <Text>
-          {this.state.joke['question']}
-        </Text>
+        <TouchableWithoutFeedback onPress={ () => this.handleTap() }>
+          <Image source={require('./background.jpg')} style={ styles.background }>
+            <Text style={ [styles.jokeQuestion, styles.jokeContainer] }>
+              {this.state.joke['question']}
+            </Text>
 
-        <TouchableWithoutFeedback
-          onPress={ () => this.showAnswer() } >
-          <Text>
-            { this.state.jokeAnswer }
-          </Text>
+            <Text style={ [styles.jokeAnswer, styles.jokeContainer] }>
+              { this.state.jokeAnswer }
+            </Text>
+          </Image>
         </TouchableWithoutFeedback>
       </View>
     );
@@ -189,8 +199,25 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: 'transparent',
   },
+
+  background: {
+    width: 450,
+    height: 300,
+    flex: 1
+  },
+
+  jokeContainer: {
+    textAlign: 'center',
+    color: '#D6CBCB',
+  },
+
+  jokeQuestion: {
+    marginTop: 110,
+    marginBottom: 10
+  },
+
 });
 
 AppRegistry.registerComponent('CatJokes', () => CatJokes);

@@ -167,26 +167,26 @@ var CatJokes = React.createClass({
     );
   },
 
+  handleTap: function() {
+    if ( this.state.jokeAnswer.length ) {
+      this.newJoke();
+    } else {
+      this.showAnswer();
+    }
+  },
+
   renderJokeView: function() {
     return (
       <View style={styles.container}>
-        <Text style={ styles.jokeQuestion }>
-          {this.state.joke['question']}
-        </Text>
+        <TouchableWithoutFeedback onPress={ () => this.handleTap() }>
+          <Image source={require('./background.jpg')} style={ styles.background }>
+            <Text style={ [styles.jokeQuestion, styles.jokeContainer] }>
+              {this.state.joke['question']}
+            </Text>
 
-        <Text style={ styles.jokeAnswer }>
-          { this.state.jokeAnswer }
-        </Text>
-
-        <TouchableWithoutFeedback
-          onPress={ () => this.newJoke() }>
-          <Image style={ [styles.catButton, styles.newQuestion] } source={require('./cat1.jpg')}>
-          </Image>
-        </TouchableWithoutFeedback>
-
-        <TouchableWithoutFeedback
-          onPress={ () => this.showAnswer() }>
-          <Image style={ [styles.catButton, styles.showAnswer] } source={require('./cat2.jpg')}>
+            <Text style={ [styles.jokeAnswer, styles.jokeContainer] }>
+              { this.state.jokeAnswer }
+            </Text>
           </Image>
         </TouchableWithoutFeedback>
       </View>
@@ -199,23 +199,23 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: 'transparent',
+  },
+
+  background: {
+    width: 450,
+    height: 300,
+    flex: 1
+  },
+
+  jokeContainer: {
+    textAlign: 'center',
+    color: '#D6CBCB',
   },
 
   jokeQuestion: {
     marginTop: 110,
-    marginBottom: 15
-  },
-
-  newQuestion: {
-    marginTop: 160
-  },
-
-  catButton: {
-    flex: 1,
-    flexDirection: 'column',
-    width: 400,
-    height: 100
+    marginBottom: 10
   },
 
 });
