@@ -46,7 +46,6 @@ var CatJokes = React.createClass({
   hideAnswer: function() {
     this.setState({
       previousJoke: this.state.joke,
-      previousJokeAnswer: this.state.jokeAnswer,
       joke: null,
       jokeAnswer: '',
 
