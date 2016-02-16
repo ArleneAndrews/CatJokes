@@ -9,16 +9,19 @@ import React, {
   View
 } from 'react-native';
 
-var CATJOKES = require('./catjokes.json')['jokes']
+var JOKES = require('./jokes.json')
+var PUNS = require('./puns.json')
 
 var CatJokes = React.createClass({
 
   getInitialState: function() {
     return {
-      joke: null,
+      allJokes: JOKES["catJokes"],
+      joke: {},
       jokeAnswer: '',
       previosJoke: null,
       previousJokeAnswer: '',
+      puns: PUNS['catPuns'],
     }
   },
 
@@ -35,7 +38,7 @@ var CatJokes = React.createClass({
 
   newJoke: function() {
     this.hideAnswer();
-    var joke = CATJOKES[Math.floor(Math.random()*CATJOKES.length)];
+    var joke = this.state.allJokes[Math.floor(Math.random()*this.state.allJokes.length)];
     this.setState({ joke: joke })
   },
 
@@ -49,7 +52,6 @@ var CatJokes = React.createClass({
       previousJokeAnswer: this.state.jokeAnswer,
       joke: null,
       jokeAnswer: '',
-
     })
   },
 

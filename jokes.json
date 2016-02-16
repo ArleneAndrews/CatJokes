@@ -1,5 +1,5 @@
 {
-  jokes: [
+  catJokes: [
     {
       question: "Can a cat play patty-cake?",
       answer: "Pawsibly!"
@@ -108,5 +108,5 @@
       question: "What's a cat's favorite dessert?",
       answer: "Chocolate mouse!"
     },
-  ]
+  ],
 }
