@@ -108,5 +108,9 @@
       question: "What's a cat's favorite dessert?",
       answer: "Chocolate mouse!"
     },
+     {
+      question: "What do cats have at the Kentucky Derby?",
+      answer: "A Catnip Julip, of course!"
+    },
   ],
 }
