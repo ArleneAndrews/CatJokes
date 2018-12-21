@@ -13,37 +13,41 @@ var CATJOKES = require('./catjokes.json')['jokes']
 
 var CatJokes = React.createClass({
 
-  getInitialState: function() {
+  getInitialState: function () {
     return {
       joke: null,
       jokeAnswer: '',
-      previosJoke: null,
+      previousJoke: null,
       previousJokeAnswer: '',
     }
   },
 
-  componentDidMount: function() {
+  componentDidMount: function () {
     this.newJoke();
   },
 
-  previousJoke: function() {
+  previousJoke: function () {
     this.setState({
       joke: this.state.previousJoke,
       jokeAnswer: ''
     })
   },
 
-  newJoke: function() {
+  newJoke: function () {
     this.hideAnswer();
-    var joke = CATJOKES[Math.floor(Math.random()*CATJOKES.length)];
-    this.setState({ joke: joke })
+    var joke = CATJOKES[Math.floor(Math.random() * CATJOKES.length)];
+    this.setState({
+      joke: joke
+    })
   },
 
-  showAnswer: function() {
-    this.setState({ jokeAnswer: this.state.joke['answer'] })
+  showAnswer: function () {
+    this.setState({
+      jokeAnswer: this.state.joke['answer']
+    })
   },
 
-  hideAnswer: function() {
+  hideAnswer: function () {
     this.setState({
       previousJoke: this.state.joke,
       joke: null,
@@ -52,7 +56,7 @@ var CatJokes = React.createClass({
     })
   },
 
-  render: function() {
+  render: function () {
     if (!this.state.joke) {
       return this.renderLoadingView();
     }
@@ -60,40 +64,67 @@ var CatJokes = React.createClass({
     return this.renderJokeView();
   },
 
-  renderLoadingView: function() {
-    return (
-      <View style={ styles.container }>
-        <Text>
-          Loading Joke . . .
-        </Text>
-      </View>
+  renderLoadingView: function () {
+    return ( <
+      View style = {
+        styles.container
+      } >
+      <
+      Text >
+      Loading Joke... <
+      /Text> <
+      /View>
     );
   },
 
-  handleTap: function() {
-    if ( this.state.jokeAnswer.length ) {
+  handleTap: function () {
+    if (this.state.jokeAnswer.length) {
       this.newJoke();
     } else {
       this.showAnswer();
     }
   },
 
-  renderJokeView: function() {
-    return (
-      <View style={ styles.container }>
-        <Text style={ styles.previousJoke } onPress={ () => this.previousJoke() }> Previous </Text>
-        <TouchableWithoutFeedback onPress={ () => this.handleTap() }>
-          <Image source={ require('./background.jpg') } style={ styles.background }>
-            <Text style={ [styles.jokeQuestion, styles.jokeContainer] }>
-              {this.state.joke['question']}
-            </Text>
+  renderJokeView: function () {
+    return ( <
+      View style = {
+        styles.container
+      } >
+      <
+      Text style = {
+        styles.previousJoke
+      }
+      onPress = {
+        () => this.previousJoke()
+      } > Previous < /Text> <
+      TouchableWithoutFeedback onPress = {
+        () => this.handleTap()
+      } >
+      <
+      Image source = {
+        require('./background.jpg')
+      }
+      style = {
+        styles.background
+      } >
+      <
+      Text style = {
+        [styles.jokeQuestion, styles.jokeContainer]
+      } > {
+        this.state.joke['question']
+      } <
+      /Text>
 
-            <Text style={ [styles.jokeAnswer, styles.jokeContainer] }>
-              { this.state.jokeAnswer }
-            </Text>
-          </Image>
-        </TouchableWithoutFeedback>
-      </View>
+      <
+      Text style = {
+        [styles.jokeAnswer, styles.jokeContainer]
+      } > {
+        this.state.jokeAnswer
+      } <
+      /Text> <
+      /Image> <
+      /TouchableWithoutFeedback> <
+      /View>
 
     );
   }
