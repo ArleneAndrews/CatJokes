@@ -65,15 +65,10 @@ var CatJokes = React.createClass({
   },
 
   renderLoadingView: function () {
-    return ( <
-      View style = {
-        styles.container
-      } >
-      <
-      Text >
-      Loading Joke... <
-      /Text> <
-      /View>
+    return ( 
+    <View style = {styles.container} >
+      <Text >
+      Loading Joke... </Text> </View>
     );
   },
 
@@ -86,45 +81,25 @@ var CatJokes = React.createClass({
   },
 
   renderJokeView: function () {
-    return ( <
-      View style = {
-        styles.container
-      } >
-      <
-      Text style = {
-        styles.previousJoke
-      }
-      onPress = {
-        () => this.previousJoke()
-      } > Previous < /Text> <
-      TouchableWithoutFeedback onPress = {
-        () => this.handleTap()
-      } >
-      <
-      Image source = {
-        require('./background.jpg')
-      }
-      style = {
-        styles.background
-      } >
-      <
-      Text style = {
-        [styles.jokeQuestion, styles.jokeContainer]
-      } > {
+    return ( <View style = {styles.container} >
+      <Text style = {styles.previousJoke}onPress = { () => 
+      this.previousJoke()}> Previous </Text> 
+        <TouchableWithoutFeedback onPress = {() => this.handleTap()} >
+      <Image source = {require('./background.jpg')}
+      style = {styles.background} >
+      <Text style = {
+        [styles.jokeQuestion, styles.jokeContainer]} > {
         this.state.joke['question']
-      } <
-      /Text>
+      } </Text>
 
-      <
-      Text style = {
+      <Text style = {
         [styles.jokeAnswer, styles.jokeContainer]
       } > {
         this.state.jokeAnswer
-      } <
-      /Text> <
-      /Image> <
-      /TouchableWithoutFeedback> <
-      /View>
+      } </Text> 
+      </Image> 
+      </TouchableWithoutFeedback> 
+      </View>
 
     );
   }
